@@ -3,20 +3,12 @@ package me.sheepyang.qlady.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ScreenUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
-import com.youth.banner.Banner;
-import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +17,11 @@ import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.adapter.NewAdapter;
 import me.sheepyang.qlady.entity.NewEntity;
-import me.sheepyang.qlady.loader.GlideImageLoader;
 
 /**
  * 最新
  */
-public class NewFragment extends BaseFragment implements OnBannerListener {
+public class HotFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -40,15 +31,13 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
     private NewAdapter mAdapter;
     private List<NewEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
-    private Banner mBannar;
-    private List<String> mBannarList = new ArrayList<>();
 
-    public NewFragment() {
+    public HotFragment() {
 
     }
 
-    public static NewFragment newInstance(String param1) {
-        NewFragment fragment = new NewFragment();
+    public static HotFragment newInstance(String param1) {
+        HotFragment fragment = new HotFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -111,16 +100,6 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
     }
 
     private void initData() {
-        mBannar.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                List<String> bannarList = new ArrayList<>();
-                for (int i = 0; i < 4; i++) {
-                    bannarList.add("http://www.tuigirl.com/Public/webupload/rouruan/tg_58b2f30c88086.jpg");
-                }
-                mBannar.update(bannarList);
-            }
-        }, 5000);
         for (int i = 0; i < 4; i++) {
             mData.add(new NewEntity());
         }
@@ -140,42 +119,5 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(mAdapter);
-
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-
-        View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) recyclerView.getParent(), false);
-        mBannar = (Banner) header.findViewById(R.id.banner);
-        mBannar.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth() / 3));
-        mAdapter.addHeaderView(mBannar);
-        //简单使用
-        mBannar.setImages(mBannarList)
-                .setDelayTime(3000)
-                .setImageLoader(new GlideImageLoader())
-                .setOnBannerListener(this)
-                .start();
-    }
-
-    //如果你需要考虑更好的体验，可以这么操作
-    @Override
-    public void onStart() {
-        super.onStart();
-        //开始轮播
-        mBannar.startAutoPlay();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        //结束轮播
-        mBannar.stopAutoPlay();
-    }
-
-    @Override
-    public void OnBannerClick(int position) {
-        LogUtils.i("点击了bannar的第" + position + "个Item");
     }
 }

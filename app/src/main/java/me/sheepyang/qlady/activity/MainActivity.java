@@ -15,6 +15,7 @@ import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.adapter.HomePageAdapter;
 import me.sheepyang.qlady.entity.TabEntity;
+import me.sheepyang.qlady.fragment.HotFragment;
 import me.sheepyang.qlady.fragment.NewFragment;
 
 public class MainActivity extends BaseActivity {
@@ -74,8 +75,8 @@ public class MainActivity extends BaseActivity {
         mTitleList.add("分类");
         mTitleList.add("最热");
         mFragmentList.add(NewFragment.newInstance("最新"));
-        mFragmentList.add(NewFragment.newInstance("分类"));
-        mFragmentList.add(NewFragment.newInstance("最热"));
+        mFragmentList.add(HotFragment.newInstance("分类"));
+        mFragmentList.add(HotFragment.newInstance("最热"));
         mTabEntities.add(new TabEntity("最新", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("分类", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("最热", R.drawable.ico_search, R.drawable.ico_search));

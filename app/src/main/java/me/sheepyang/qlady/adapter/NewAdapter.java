@@ -1,8 +1,10 @@
 package me.sheepyang.qlady.adapter;
 
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -18,17 +20,16 @@ import me.sheepyang.qlady.util.glide.GlideCircleTransform;
  */
 
 public class NewAdapter extends BaseQuickAdapter<NewEntity, BaseViewHolder> {
-    private int mScreenWidth;
+    private LinearLayout.LayoutParams mParams;
 
     public NewAdapter(List<NewEntity> data) {
         super(R.layout.item_new, data);
+        mParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth());
     }
 
     @Override
     protected void convert(BaseViewHolder helper, NewEntity item) {
-        mScreenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mScreenWidth, (int) (mScreenWidth/* * 1.25*/));
-        helper.getView(R.id.iv_desc).setLayoutParams(params);
+        helper.getView(R.id.iv_desc).setLayoutParams(mParams);
 
         Glide.with(mContext)
                 .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492624497119&di=298dc98d6977a37dab24f902d091ddd2&imgtype=0&src=http%3A%2F%2Fk2.jsqq.net%2Fuploads%2Fallimg%2F1702%2F7_170228144936_2.jpg")
