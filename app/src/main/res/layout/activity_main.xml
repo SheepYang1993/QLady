@@ -39,7 +39,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:src="@drawable/ico_search"/>
+            android:src="@drawable/ico_mine"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
