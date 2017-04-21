@@ -1,5 +1,6 @@
 package me.sheepyang.qlady.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.ModelDetailActivity;
 import me.sheepyang.qlady.adapter.NewAdapter;
 import me.sheepyang.qlady.entity.NewEntity;
 import me.sheepyang.qlady.loader.GlideImageLoader;
@@ -33,7 +35,7 @@ import me.sheepyang.qlady.loader.GlideImageLoader;
 public class NewFragment extends BaseFragment implements OnBannerListener {
     private static final String ARG_PARAM1 = "param1";
     @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+    RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     TwinklingRefreshLayout mRefreshLayout;
     private String mParam1;
@@ -76,6 +78,12 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
     }
 
     private void initListener() {
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext, ModelDetailActivity.class));
+            }
+        });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
@@ -137,9 +145,9 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
         mAdapter.isFirstOnly(true);
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(mAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecyclerView.setAdapter(mAdapter);
 
         mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
         mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
@@ -147,7 +155,7 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
         mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
         mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
 
-        View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) recyclerView.getParent(), false);
+        View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) mRecyclerView.getParent(), false);
         mBannar = (Banner) header.findViewById(R.id.banner);
         mBannar.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth() / 3));
         mAdapter.addHeaderView(mBannar);
