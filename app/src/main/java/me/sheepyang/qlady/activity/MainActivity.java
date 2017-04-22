@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import me.sheepyang.qlady.QApp;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.adapter.HomePageAdapter;
 import me.sheepyang.qlady.entity.TabEntity;
-import me.sheepyang.qlady.fragment.HotFragment;
-import me.sheepyang.qlady.fragment.NewFragment;
+import me.sheepyang.qlady.fragment.ModelListFragment;
+import me.sheepyang.qlady.fragment.SortFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -27,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private List<String> mTitleList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private long mCurrentTime;
 
     @Override
     protected int setLayoutId() {
@@ -74,14 +76,25 @@ public class MainActivity extends BaseActivity {
         mTitleList.add("最新");
         mTitleList.add("分类");
         mTitleList.add("最热");
-        mFragmentList.add(NewFragment.newInstance("最新"));
-        mFragmentList.add(HotFragment.newInstance("分类"));
-        mFragmentList.add(HotFragment.newInstance("最热"));
+        mFragmentList.add(ModelListFragment.newInstance(true));
+        mFragmentList.add(SortFragment.newInstance("分类"));
+        mFragmentList.add(ModelListFragment.newInstance(false));
         mTabEntities.add(new TabEntity("最新", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("分类", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("最热", R.drawable.ico_search, R.drawable.ico_search));
 
         viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), mFragmentList, mTitleList));
         tabLayout.setTabData(mTabEntities);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mCurrentTime < 2000) {
+            mCurrentTime = 0;
+            QApp.exitApp(mContext);
+        } else {
+            mCurrentTime = System.currentTimeMillis();
+            showToast("再次点击退出APP");
+        }
     }
 }

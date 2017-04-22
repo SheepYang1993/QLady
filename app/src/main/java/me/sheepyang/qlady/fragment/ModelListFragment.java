@@ -26,33 +26,33 @@ import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.ModelDetailActivity;
 import me.sheepyang.qlady.adapter.NewAdapter;
-import me.sheepyang.qlady.entity.NewEntity;
+import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.loader.GlideImageLoader;
 
 /**
  * 最新
  */
-public class NewFragment extends BaseFragment implements OnBannerListener {
-    private static final String ARG_PARAM1 = "param1";
+public class ModelListFragment extends BaseFragment implements OnBannerListener {
+    private static final String PARAM_IS_SHOW_BANNAR = "param_is_show_bannar";
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     TwinklingRefreshLayout mRefreshLayout;
-    private String mParam1;
     private NewAdapter mAdapter;
-    private List<NewEntity> mData = new ArrayList<>();
+    private List<ModelEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
     private Banner mBannar;
     private List<String> mBannarList = new ArrayList<>();
+    private boolean mIsShowBannar;
 
-    public NewFragment() {
+    public ModelListFragment() {
 
     }
 
-    public static NewFragment newInstance(String param1) {
-        NewFragment fragment = new NewFragment();
+    public static ModelListFragment newInstance(boolean isShowBannar) {
+        ModelListFragment fragment = new ModelListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putBoolean(PARAM_IS_SHOW_BANNAR, isShowBannar);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,13 +61,13 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mIsShowBannar = getArguments().getBoolean(PARAM_IS_SHOW_BANNAR, false);
         }
     }
 
     @Override
     protected int setLayoutId() {
-        return R.layout.fragment_new;
+        return R.layout.layout_refresh_rv;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
                     public void run() {
                         mData.clear();
                         for (int i = 0; i < 4; i++) {
-                            mData.add(new NewEntity());
+                            mData.add(new ModelEntity());
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
@@ -108,7 +108,7 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
                     @Override
                     public void run() {
                         for (int i = 0; i < 3; i++) {
-                            mData.add(new NewEntity());
+                            mData.add(new ModelEntity());
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
@@ -119,18 +119,20 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
     }
 
     private void initData() {
-        mBannar.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                List<String> bannarList = new ArrayList<>();
-                for (int i = 0; i < 4; i++) {
-                    bannarList.add("http://www.tuigirl.com/Public/webupload/rouruan/tg_58b2f30c88086.jpg");
+        if (mIsShowBannar) {
+            mBannar.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<String> bannarList = new ArrayList<>();
+                    for (int i = 0; i < 4; i++) {
+                        bannarList.add("http://www.tuigirl.com/Public/webupload/rouruan/tg_58b2f30c88086.jpg");
+                    }
+                    mBannar.update(bannarList);
                 }
-                mBannar.update(bannarList);
-            }
-        }, 5000);
+            }, 5000);
+        }
         for (int i = 0; i < 4; i++) {
-            mData.add(new NewEntity());
+            mData.add(new ModelEntity());
         }
         mAdapter.updata(mData);
     }
@@ -149,37 +151,62 @@ public class NewFragment extends BaseFragment implements OnBannerListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mAdapter);
 
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-        mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+        if (mIsShowBannar) {
+            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
 
-        View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) mRecyclerView.getParent(), false);
-        mBannar = (Banner) header.findViewById(R.id.banner);
-        mBannar.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth() / 3));
-        mAdapter.addHeaderView(mBannar);
-        //简单使用
-        mBannar.setImages(mBannarList)
-                .setDelayTime(3000)
-                .setImageLoader(new GlideImageLoader())
-                .setOnBannerListener(this)
-                .start();
+            View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) mRecyclerView.getParent(), false);
+            mBannar = (Banner) header.findViewById(R.id.banner);
+            mBannar.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth() / 3));
+            mAdapter.addHeaderView(mBannar);
+            //简单使用
+            mBannar.setImages(mBannarList)
+                    .setDelayTime(3000)
+//                    .setBannerStyle(BannerConfig.NUM_INDICATOR)
+                    .setImageLoader(new GlideImageLoader())
+                    .setOnBannerListener(this)
+                    .start();
+        }
     }
+
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser) {
+//            //可见时执行的操作
+//            if (mIsShowBannar) {
+//                //开始轮播
+//                mBannar.startAutoPlay();
+//            }
+//        } else {
+//            //不可见时执行的操作
+//            if (mIsShowBannar) {
+//                //结束轮播
+//                mBannar.stopAutoPlay();
+//            }
+//        }
+//    }
 
     //如果你需要考虑更好的体验，可以这么操作
     @Override
     public void onStart() {
         super.onStart();
-        //开始轮播
-        mBannar.startAutoPlay();
+        if (mIsShowBannar) {
+            //开始轮播
+            mBannar.startAutoPlay();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //结束轮播
-        mBannar.stopAutoPlay();
+        if (mIsShowBannar) {
+            //结束轮播
+            mBannar.stopAutoPlay();
+        }
     }
 
     @Override

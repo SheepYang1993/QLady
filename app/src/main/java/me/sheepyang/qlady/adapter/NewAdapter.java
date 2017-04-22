@@ -12,23 +12,23 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 import me.sheepyang.qlady.R;
-import me.sheepyang.qlady.entity.NewEntity;
+import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.util.glide.GlideCircleTransform;
 
 /**
  * Created by Administrator on 2017/4/19.
  */
 
-public class NewAdapter extends BaseQuickAdapter<NewEntity, BaseViewHolder> {
+public class NewAdapter extends BaseQuickAdapter<ModelEntity, BaseViewHolder> {
     private LinearLayout.LayoutParams mParams;
 
-    public NewAdapter(List<NewEntity> data) {
-        super(R.layout.item_new, data);
+    public NewAdapter(List<ModelEntity> data) {
+        super(R.layout.item_model, data);
         mParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getScreenWidth());
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, NewEntity item) {
+    protected void convert(BaseViewHolder helper, ModelEntity item) {
         helper.getView(R.id.iv_desc).setLayoutParams(mParams);
 
         Glide.with(mContext)
@@ -45,7 +45,7 @@ public class NewAdapter extends BaseQuickAdapter<NewEntity, BaseViewHolder> {
                 .into((ImageView) helper.getView(R.id.iv_desc));
     }
 
-    public void updata(List<NewEntity> data) {
+    public void updata(List<ModelEntity> data) {
         mData = data;
         notifyDataSetChanged();
     }

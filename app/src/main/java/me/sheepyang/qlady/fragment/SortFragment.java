@@ -1,7 +1,7 @@
 package me.sheepyang.qlady.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -15,29 +15,29 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
-import me.sheepyang.qlady.adapter.NewAdapter;
-import me.sheepyang.qlady.entity.NewEntity;
+import me.sheepyang.qlady.adapter.SortAdapter;
+import me.sheepyang.qlady.entity.SortEntity;
 
 /**
- * 最新
+ * 分类
  */
-public class HotFragment extends BaseFragment {
+public class SortFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+    RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     TwinklingRefreshLayout mRefreshLayout;
-    private String mParam1;
-    private NewAdapter mAdapter;
-    private List<NewEntity> mData = new ArrayList<>();
+    //    private String mParam1;
+    private SortAdapter mAdapter;
+    private List<SortEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
 
-    public HotFragment() {
+    public SortFragment() {
 
     }
 
-    public static HotFragment newInstance(String param1) {
-        HotFragment fragment = new HotFragment();
+    public static SortFragment newInstance(String param1) {
+        SortFragment fragment = new SortFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -48,13 +48,13 @@ public class HotFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam1 = getArguments().getString(ARG_PARAM1);
         }
     }
 
     @Override
     protected int setLayoutId() {
-        return R.layout.fragment_new;
+        return R.layout.layout_refresh_rv;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class HotFragment extends BaseFragment {
                     public void run() {
                         mData.clear();
                         for (int i = 0; i < 4; i++) {
-                            mData.add(new NewEntity());
+                            mData.add(new SortEntity());
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
@@ -89,7 +89,7 @@ public class HotFragment extends BaseFragment {
                     @Override
                     public void run() {
                         for (int i = 0; i < 3; i++) {
-                            mData.add(new NewEntity());
+                            mData.add(new SortEntity());
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
@@ -101,7 +101,7 @@ public class HotFragment extends BaseFragment {
 
     private void initData() {
         for (int i = 0; i < 4; i++) {
-            mData.add(new NewEntity());
+            mData.add(new SortEntity());
         }
         mAdapter.updata(mData);
     }
@@ -112,12 +112,12 @@ public class HotFragment extends BaseFragment {
         mRefreshLayout.setHeaderView(mHeadView);
         mRefreshLayout.setBottomView(new LoadingView(mContext));
 
-        mAdapter = new NewAdapter(mData);
+        mAdapter = new SortAdapter(mData);
         mAdapter.isFirstOnly(true);
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(mAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

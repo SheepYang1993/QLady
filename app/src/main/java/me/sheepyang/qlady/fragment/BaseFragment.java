@@ -29,9 +29,15 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = inflater.inflate(setLayoutId(), container, false);
-        unbinder = ButterKnife.bind(this, mRootView);
-        init();
+        if (mRootView == null) {
+            mRootView = inflater.inflate(setLayoutId(), container, false);
+            unbinder = ButterKnife.bind(this, mRootView);
+            init();
+        }
+        ViewGroup parent = (ViewGroup) mRootView.getParent();
+        if (parent != null) {
+            parent.removeView(mRootView);
+        }
         return mRootView;
     }
 
@@ -41,10 +47,4 @@ public abstract class BaseFragment extends Fragment {
     setLayoutId();
 
     protected abstract void init();
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

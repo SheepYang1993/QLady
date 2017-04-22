@@ -10,6 +10,8 @@ import com.lzy.okgo.cookie.store.PersistentCookieStore;
 
 import java.util.logging.Level;
 
+import me.sheepyang.qlady.util.AppManager;
+
 
 /**
  * Created by SheepYang on 2017/4/19.
@@ -38,5 +40,9 @@ public class QApp extends Application {
                 .debug(QContacts.TAG, BuildConfig.IS_DEBUG ? Level.INFO : Level.OFF, BuildConfig.IS_DEBUG ? true : false)
                 //cookie持久化存储，如果cookie不过期，则一直有效
                 .setCookieStore(new PersistentCookieStore());
+    }
+
+    public static void exitApp(Context context) {
+        AppManager.getAppManager().AppExit(context);
     }
 }
