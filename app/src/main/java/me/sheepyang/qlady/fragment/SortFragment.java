@@ -1,8 +1,10 @@
 package me.sheepyang.qlady.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.ModelListActivity;
 import me.sheepyang.qlady.adapter.SortAdapter;
 import me.sheepyang.qlady.entity.SortEntity;
 
@@ -65,6 +68,12 @@ public class SortFragment extends BaseFragment {
     }
 
     private void initListener() {
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext, ModelListActivity.class));
+            }
+        });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
