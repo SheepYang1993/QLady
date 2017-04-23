@@ -1,8 +1,10 @@
 package me.sheepyang.qlady.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.sheepyang.qlady.QApp;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.adapter.HomePageAdapter;
@@ -19,7 +22,7 @@ import me.sheepyang.qlady.entity.TabEntity;
 import me.sheepyang.qlady.fragment.ModelListFragment;
 import me.sheepyang.qlady.fragment.SortFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @BindView(R.id.tab_layout)
     CommonTabLayout tabLayout;
@@ -95,6 +98,21 @@ public class MainActivity extends BaseActivity {
         } else {
             mCurrentTime = System.currentTimeMillis();
             showToast("再次点击退出APP");
+        }
+    }
+
+    @Override
+    @OnClick({R.id.iv_search, R.id.iv_mine})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_mine:
+                startActivity(new Intent(mContext, PersonCenterActivity.class));
+                break;
+            case R.id.iv_search:
+                startActivity(new Intent(mContext, SearchActivity.class));
+                break;
+            default:
+                break;
         }
     }
 }
