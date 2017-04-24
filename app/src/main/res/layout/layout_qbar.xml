@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="?android:actionBarSize"
-                android:background="@color/colorAccent"
-                android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="?android:actionBarSize"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_left"
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:padding="10dp"
-        android:src="@drawable/ico_back"/>
+        android:src="@drawable/ico_back" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -20,5 +20,30 @@
         android:layout_centerInParent="true"
         android:text="@string/app_name"
         android:textColor="@color/white"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="15dp"
+            android:layout_height="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="解锁"
+            android:textSize="12sp" />
+    </LinearLayout>
 </RelativeLayout>

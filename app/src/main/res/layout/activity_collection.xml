@@ -5,17 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="me.sheepyang.qlady.activity.ModelPhotoActivity">
+    tools:context="me.sheepyang.qlady.activity.ModelListActivity">
 
     <me.sheepyang.qlady.widget.QBar
-        android:id="@+id/q_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:qb_right_drawable="@drawable/ico_lock"
-        app:qb_right_text="解锁"
-        app:qb_title="照片详情">
+        app:qb_title="我的收藏" />
 
-    </me.sheepyang.qlady.widget.QBar>
-
-    <include layout="@layout/layout_refresh_rv" />
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

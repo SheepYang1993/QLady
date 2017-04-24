@@ -8,8 +8,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.blankj.utilcode.util.SizeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,13 +23,23 @@ import me.sheepyang.qlady.R;
  */
 
 public class QBar extends RelativeLayout {
+    private float mRightTextSize;
+    @BindView(R.id.iv_right)
+    ImageView mIvRight;
+    private int mRightDrawableId;
+    @BindView(R.id.ll_right)
+    LinearLayout mLlRight;
+    private String mRightText;
     private String mTitle;
     private Context mContext;
     @BindView(R.id.iv_left)
     ImageView mIvLeft;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
+    @BindView(R.id.tv_right)
+    TextView mTvRight;
     private View mView;
+    private OnClickListener mOnRightClickListener;
 
     public QBar(Context context) {
         this(context, null);
@@ -42,6 +55,9 @@ public class QBar extends RelativeLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.QBar, defStyleAttr, 0);
         try {
             mTitle = a.getString(R.styleable.QBar_qb_title);
+            mRightText = a.getString(R.styleable.QBar_qb_right_text);
+            mRightDrawableId = a.getResourceId(R.styleable.QBar_qb_right_drawable, -1);
+            mRightTextSize = a.getDimension(R.styleable.QBar_qb_right_text_size, SizeUtils.sp2px(17));
         } finally {
             a.recycle();
         }
@@ -55,6 +71,49 @@ public class QBar extends RelativeLayout {
         if (!TextUtils.isEmpty(mTitle)) {
             mTvTitle.setText(mTitle);
         }
+        if (!TextUtils.isEmpty(mRightText)) {
+            mTvRight.setText(mRightText);
+        }
+        mTvRight.setTextSize(mRightTextSize);
+
+        if (!TextUtils.isEmpty(mRightText) && mRightDrawableId != -1) {
+            mLlRight.setVisibility(VISIBLE);
+            mTvRight.setVisibility(VISIBLE);
+            mIvRight.setVisibility(VISIBLE);
+            mTvRight.setTextColor(getResources().getColor(R.color.black));
+            mLlRight.setBackgroundResource(R.drawable.bg_white_small_shape);
+            mIvRight.setImageResource(mRightDrawableId);
+        } else if (!TextUtils.isEmpty(mRightText)) {
+            mLlRight.setVisibility(VISIBLE);
+            mTvRight.setVisibility(VISIBLE);
+            mIvRight.setVisibility(GONE);
+            mTvRight.setTextColor(getResources().getColor(R.color.white));
+            mLlRight.setBackground(null);
+        } else if (mRightDrawableId != -1) {
+            mLlRight.setVisibility(VISIBLE);
+            mTvRight.setVisibility(GONE);
+            mIvRight.setVisibility(VISIBLE);
+            mIvRight.setImageResource(mRightDrawableId);
+            mLlRight.setBackground(null);
+        } else {
+            mLlRight.setVisibility(GONE);
+        }
+//
+//        if (!isInEditMode()) {
+//            if (mRightDrawableId != -1) {
+//                mIvRight.setVisibility(VISIBLE);
+//                Glide.with(mContext)
+//                        .load(mRightDrawableId)
+//                        .into(mIvRight);
+//            } else {
+//                mIvRight.setVisibility(GONE);
+//            }
+//        }
+//        if (!TextUtils.isEmpty(mRightText) || mRightDrawableId != -1) {
+//            mLlRight.setVisibility(VISIBLE);
+//        } else {
+//            mLlRight.setVisibility(GONE);
+//        }
         mIvLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,5 +122,17 @@ public class QBar extends RelativeLayout {
                 }
             }
         });
+        mLlRight.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnRightClickListener != null) {
+                    mOnRightClickListener.onClick(v);
+                }
+            }
+        });
+    }
+
+    public void setOnRightClickListener(OnClickListener onRightClickListener) {
+        mOnRightClickListener = onRightClickListener;
     }
 }

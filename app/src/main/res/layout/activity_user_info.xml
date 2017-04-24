@@ -4,18 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="me.sheepyang.qlady.activity.ModelPhotoActivity">
+    tools:context="me.sheepyang.qlady.activity.UserInfoActivity">
 
     <me.sheepyang.qlady.widget.QBar
-        android:id="@+id/q_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:qb_right_drawable="@drawable/ico_lock"
-        app:qb_right_text="解锁"
-        app:qb_title="照片详情">
-
-    </me.sheepyang.qlady.widget.QBar>
-
-    <include layout="@layout/layout_refresh_rv" />
+        app:qb_right_text="保存"
+        app:qb_right_text_size="17sp"
+        app:qb_title="个人信息" />
 </LinearLayout>

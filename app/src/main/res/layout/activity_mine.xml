@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
     android:orientation="vertical"
-    tools:context="me.sheepyang.qlady.activity.PersonCenterActivity">
+    tools:context="me.sheepyang.qlady.activity.MineActivity">
 
     <me.sheepyang.qlady.widget.QBar
         android:layout_width="match_parent"
@@ -56,6 +56,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/rl_open_vip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +82,7 @@
             android:background="@color/split_line" />
 
         <RelativeLayout
+            android:id="@+id/rl_collection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -121,6 +123,7 @@
                 android:background="@color/split_line" />
 
             <TextView
+                android:id="@+id/tv_clear_memory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -185,7 +188,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:padding="15dp"
-        android:textSize="17sp"
         android:text="退出登录"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp" />
 </LinearLayout>

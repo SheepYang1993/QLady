@@ -4,20 +4,15 @@ import android.os.Bundle;
 
 import me.sheepyang.qlady.R;
 
-public class PersonCenterActivity extends BaseActivity {
+public class UserInfoActivity extends BaseActivity {
 
     @Override
     protected int setLayoutId() {
-        return R.layout.activity_person_center;
+        return R.layout.activity_user_info;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-    }
-
-    private void initView() {
-
     }
 }
