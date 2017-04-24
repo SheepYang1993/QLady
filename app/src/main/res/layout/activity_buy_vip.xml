@@ -26,175 +26,178 @@
         android:text="VIP会员套餐（会员可解锁所有照片集）"
         android:textSize="17sp"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_vip_12"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="12个月会员（8折）"
-            android:textSize="15sp"/>
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            <TextView
+                android:id="@+id/tv_vip_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="12个月会员（8折）"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_vip_12"
+                android:background="@drawable/bg_red_shape"
+                android:text="推荐"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="￥240"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_size"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_vip_12"
-            android:background="@drawable/bg_red_shape"
-            android:text="推荐"
-            android:textColor="@color/white"
-            android:textSize="12sp"/>
+            android:layout_marginRight="10dp"
+            android:background="@color/split_line"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="￥240"
-            android:textColor="@color/colorAccent"
-            android:textSize="17sp"/>
-    </RelativeLayout>
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/split_line_size"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/split_line"/>
+            <TextView
+                android:id="@+id/tv_vip_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="6个月会员（8.5折）"
+                android:textSize="15sp"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_vip_6"
+                android:background="@drawable/bg_red_shape"
+                android:text="推荐"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/tv_vip_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="6个月会员（8.5折）"
-            android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="￥128"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp"/>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_size"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_vip_6"
-            android:background="@drawable/bg_red_shape"
-            android:text="推荐"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="gone"/>
+            android:layout_marginRight="10dp"
+            android:background="@color/split_line"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="￥128"
-            android:textColor="@color/colorAccent"
-            android:textSize="17sp"/>
-    </RelativeLayout>
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/split_line_size"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/split_line"/>
+            <TextView
+                android:id="@+id/tv_vip_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="3个月会员（9折）"
+                android:textSize="15sp"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_vip_3"
+                android:background="@drawable/bg_red_shape"
+                android:text="推荐"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/tv_vip_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="3个月会员（9折）"
-            android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="￥68"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp"/>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_size"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_vip_3"
-            android:background="@drawable/bg_red_shape"
-            android:text="推荐"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="gone"/>
+            android:layout_marginRight="10dp"
+            android:background="@color/split_line"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="￥68"
-            android:textColor="@color/colorAccent"
-            android:textSize="17sp"/>
-    </RelativeLayout>
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/split_line_size"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/split_line"/>
+            <TextView
+                android:id="@+id/tv_vip_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="1个月会员"
+                android:textSize="15sp"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_vip_1"
+                android:background="@drawable/bg_red_shape"
+                android:text="推荐"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/tv_vip_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="1个月会员"
-            android:textSize="15sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/tv_vip_1"
-            android:background="@drawable/bg_red_shape"
-            android:text="推荐"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:visibility="gone"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="￥25"
-            android:textColor="@color/colorAccent"
-            android:textSize="17sp"/>
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="￥25"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp"/>
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
