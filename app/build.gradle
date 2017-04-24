@@ -59,6 +59,7 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12'
     compile 'com.youth.banner:banner:1.4.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    compile 'com.lzy.widget:imagepicker:0.5.4'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

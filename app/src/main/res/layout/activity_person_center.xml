@@ -11,7 +11,7 @@
     <me.sheepyang.qlady.widget.QBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:qbar_title="我的" />
+        app:qb_title="我的" />
 
     <RelativeLayout
         android:layout_width="match_parent"

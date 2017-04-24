@@ -25,7 +25,8 @@ import java.util.List;
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.ModelDetailActivity;
-import me.sheepyang.qlady.adapter.NewAdapter;
+import me.sheepyang.qlady.activity.ModelPhotoActivity;
+import me.sheepyang.qlady.adapter.ModelDetailAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.loader.GlideImageLoader;
 
@@ -34,25 +35,29 @@ import me.sheepyang.qlady.loader.GlideImageLoader;
  */
 public class ModelListFragment extends BaseFragment implements OnBannerListener {
     private static final String PARAM_IS_SHOW_BANNAR = "param_is_show_bannar";
+    private static final String PARAM_IS_IV_AVATAR_CLICKABLE = "param_is_iv_avatar_clickable";
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     TwinklingRefreshLayout mRefreshLayout;
-    private NewAdapter mAdapter;
+    private ModelDetailAdapter mAdapter;
     private List<ModelEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
     private Banner mBannar;
     private List<String> mBannarList = new ArrayList<>();
     private boolean mIsShowBannar;
+    private boolean mIsIvAvatarClickable = true;
+
 
     public ModelListFragment() {
 
     }
 
-    public static ModelListFragment newInstance(boolean isShowBannar) {
+    public static ModelListFragment newInstance(boolean isShowBannar, boolean isIvAvatarClickable) {
         ModelListFragment fragment = new ModelListFragment();
         Bundle args = new Bundle();
         args.putBoolean(PARAM_IS_SHOW_BANNAR, isShowBannar);
+        args.putBoolean(PARAM_IS_IV_AVATAR_CLICKABLE, isIvAvatarClickable);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +67,7 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mIsShowBannar = getArguments().getBoolean(PARAM_IS_SHOW_BANNAR, false);
+            mIsIvAvatarClickable = getArguments().getBoolean(PARAM_IS_IV_AVATAR_CLICKABLE, true);
         }
     }
 
@@ -78,10 +84,24 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
     }
 
     private void initListener() {
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.iv_avatar:
+                        if (mIsIvAvatarClickable) {
+                            startActivity(new Intent(mContext, ModelDetailActivity.class));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, ModelDetailActivity.class));
+                startActivity(new Intent(mContext, ModelPhotoActivity.class));
             }
         });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
@@ -143,7 +163,7 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
         mRefreshLayout.setHeaderView(mHeadView);
         mRefreshLayout.setBottomView(new LoadingView(mContext));
 
-        mAdapter = new NewAdapter(mData);
+        mAdapter = new ModelDetailAdapter(mData);
         mAdapter.isFirstOnly(true);
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 

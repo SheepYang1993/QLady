@@ -20,6 +20,6 @@ public class ModelListActivity extends BaseActivity {
 
     private void initView() {
         //必需继承FragmentActivity,嵌套fragment只需要这行代码
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, ModelListFragment.newInstance(false)).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, ModelListFragment.newInstance(false, true)).commitAllowingStateLoss();
     }
 }

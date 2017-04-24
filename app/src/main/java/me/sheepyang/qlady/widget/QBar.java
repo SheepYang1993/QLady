@@ -41,7 +41,7 @@ public class QBar extends RelativeLayout {
         mContext = context;
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.QBar, defStyleAttr, 0);
         try {
-            mTitle = a.getString(R.styleable.QBar_qbar_title);
+            mTitle = a.getString(R.styleable.QBar_qb_title);
         } finally {
             a.recycle();
         }

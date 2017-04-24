@@ -22,7 +22,7 @@ import me.sheepyang.qlady.entity.TabEntity;
 import me.sheepyang.qlady.fragment.ModelListFragment;
 import me.sheepyang.qlady.fragment.SortFragment;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tab_layout)
     CommonTabLayout tabLayout;
@@ -79,9 +79,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mTitleList.add("最新");
         mTitleList.add("分类");
         mTitleList.add("最热");
-        mFragmentList.add(ModelListFragment.newInstance(true));
+        mFragmentList.add(ModelListFragment.newInstance(true, true));
         mFragmentList.add(SortFragment.newInstance("分类"));
-        mFragmentList.add(ModelListFragment.newInstance(false));
+        mFragmentList.add(ModelListFragment.newInstance(false, true));
         mTabEntities.add(new TabEntity("最新", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("分类", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("最热", R.drawable.ico_search, R.drawable.ico_search));

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="QBar">
-        <attr name="qbar_title" format="string" />
+        <attr name="qb_title" format="string"/>
     </declare-styleable>
 </resources>

@@ -1,31 +1,25 @@
 package me.sheepyang.qlady.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.footer.LoadingView;
-import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.sheepyang.qlady.R;
-import me.sheepyang.qlady.adapter.ModelDetailAdapter;
-import me.sheepyang.qlady.entity.ModelEntity;
+import me.sheepyang.qlady.fragment.ModelListFragment;
+import me.sheepyang.qlady.util.glide.GlideCircleTransform;
+import me.sheepyang.qlady.widget.dialog.QDialog;
 
-public class ModelDetailActivity extends BaseActivity {
-    @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.refresh_layout)
-    TwinklingRefreshLayout mRefreshLayout;
-    private ModelDetailAdapter mAdapter;
-    private List<ModelEntity> mData = new ArrayList<>();
-    private SinaRefreshView mHeadView;
+public class ModelDetailActivity extends BaseActivity implements View.OnClickListener {
+
+    @BindView(R.id.iv_avatar)
+    ImageView mIvAvatar;
+    private QDialog mHintialog;
 
     @Override
     protected int setLayoutId() {
@@ -40,60 +34,40 @@ public class ModelDetailActivity extends BaseActivity {
         initData();
     }
 
-    private void initView() {
-        mHeadView = new SinaRefreshView(mContext);
-        mHeadView.setArrowResource(R.drawable.ico_pink_arrow);
-        mRefreshLayout.setHeaderView(mHeadView);
-        mRefreshLayout.setBottomView(new LoadingView(mContext));
-
-        mAdapter = new ModelDetailAdapter(mData);
-        mAdapter.isFirstOnly(true);
-        mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
     private void initListener() {
-        mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+        mHintialog.setOnRightClickListener(new DialogInterface.OnClickListener() {
             @Override
-            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
-                super.onRefresh(refreshLayout);
-                mRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mData.clear();
-                        for (int i = 0; i < 4; i++) {
-                            mData.add(new ModelEntity());
-                        }
-                        mAdapter.updata(mData);
-                        mRefreshLayout.finishRefreshing();
-                    }
-                }, 1000);
-            }
-
-            @Override
-            public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
-                super.onLoadMore(refreshLayout);
-                mRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < 3; i++) {
-                            mData.add(new ModelEntity());
-                        }
-                        mAdapter.updata(mData);
-                        mRefreshLayout.finishLoadmore();
-                    }
-                }, 1000);
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(mContext, BuyVIPActivity.class));
             }
         });
     }
 
     private void initData() {
-        for (int i = 0; i < 4; i++) {
-            mData.add(new ModelEntity());
+        Glide.with(mContext)
+                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492624497119&di=298dc98d6977a37dab24f902d091ddd2&imgtype=0&src=http%3A%2F%2Fk2.jsqq.net%2Fuploads%2Fallimg%2F1702%2F7_170228144936_2.jpg")
+                .transform(new GlideCircleTransform(mContext))
+                .placeholder(R.drawable.anim_loading_view)
+                .into(mIvAvatar);
+    }
+
+    private void initView() {
+        mHintialog = new QDialog(mContext);
+        mHintialog.setTitle("获取联系方式");
+        mHintialog.setMessage("开通会员才能查看我的联系方式哦~");
+        //必需继承FragmentActivity,嵌套fragment只需要这行代码
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, ModelListFragment.newInstance(false, false)).commitAllowingStateLoss();
+    }
+
+    @Override
+    @OnClick({R.id.tv_get_contact})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_get_contact:
+                mHintialog.show();
+                break;
+            default:
+                break;
         }
-        mAdapter.updata(mData);
     }
 }
