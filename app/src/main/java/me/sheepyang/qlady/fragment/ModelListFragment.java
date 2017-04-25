@@ -112,9 +112,10 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
                     @Override
                     public void run() {
                         mData.clear();
-                        for (int i = 0; i < 4; i++) {
-                            mData.add(new ModelEntity());
-                        }
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
                     }
@@ -127,9 +128,9 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
                 mRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        for (int i = 0; i < 3; i++) {
-                            mData.add(new ModelEntity());
-                        }
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
                     }
@@ -151,9 +152,11 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
                 }
             }, 5000);
         }
-        for (int i = 0; i < 4; i++) {
-            mData.add(new ModelEntity());
-        }
+        mData.clear();
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
         mAdapter.updata(mData);
     }
 

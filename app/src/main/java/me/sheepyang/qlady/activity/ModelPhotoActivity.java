@@ -3,6 +3,7 @@ package me.sheepyang.qlady.activity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
@@ -17,15 +18,20 @@ import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.adapter.ModelPhotoAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
+import me.sheepyang.qlady.widget.QBar;
+import me.sheepyang.qlady.widget.dialog.QDialog;
 
 public class ModelPhotoActivity extends BaseActivity {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     TwinklingRefreshLayout mRefreshLayout;
+    @BindView(R.id.q_bar)
+    QBar mQBar;
     private ModelPhotoAdapter mAdapter;
     private List<ModelEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
+    private QDialog mHintDialog;
 
     @Override
     protected int setLayoutId() {
@@ -53,9 +59,19 @@ public class ModelPhotoActivity extends BaseActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
         mRecyclerView.setAdapter(mAdapter);
+
+        mHintDialog = new QDialog(mContext);
+        mHintDialog.setTitle("开通会员");
+        mHintDialog.setMessage("现在开通会员，即可解锁所有照片，并可获取模特联系方式哦~");
     }
 
     private void initListener() {
+        mQBar.setOnRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHintDialog.show();
+            }
+        });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
@@ -64,9 +80,11 @@ public class ModelPhotoActivity extends BaseActivity {
                     @Override
                     public void run() {
                         mData.clear();
-                        for (int i = 0; i < 4; i++) {
-                            mData.add(new ModelEntity());
-                        }
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
                     }
@@ -79,9 +97,10 @@ public class ModelPhotoActivity extends BaseActivity {
                 mRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        for (int i = 0; i < 3; i++) {
-                            mData.add(new ModelEntity());
-                        }
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
                     }
@@ -91,9 +110,12 @@ public class ModelPhotoActivity extends BaseActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 4; i++) {
-            mData.add(new ModelEntity());
-        }
+        mData.clear();
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
         mAdapter.updata(mData);
     }
 }
