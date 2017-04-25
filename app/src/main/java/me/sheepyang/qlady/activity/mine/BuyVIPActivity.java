@@ -1,4 +1,4 @@
-package me.sheepyang.qlady.activity;
+package me.sheepyang.qlady.activity.mine;
 
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.BaseActivity;
 
 /**
  * 购买VIP会员

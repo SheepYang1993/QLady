@@ -1,8 +1,9 @@
-package me.sheepyang.qlady.activity;
+package me.sheepyang.qlady.activity.mine;
 
 import android.os.Bundle;
 
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.BaseActivity;
 import me.sheepyang.qlady.fragment.ModelListFragment;
 
 public class CollectionActivity extends BaseActivity {

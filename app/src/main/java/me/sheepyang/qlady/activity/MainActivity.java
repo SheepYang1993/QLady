@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import me.sheepyang.qlady.QApp;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.mine.MineActivity;
 import me.sheepyang.qlady.adapter.HomePageAdapter;
 import me.sheepyang.qlady.entity.TabEntity;
 import me.sheepyang.qlady.fragment.ModelListFragment;

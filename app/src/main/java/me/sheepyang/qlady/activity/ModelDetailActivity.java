@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.OnClick;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.fragment.ModelListFragment;
 import me.sheepyang.qlady.util.glide.GlideCircleTransform;
 import me.sheepyang.qlady.widget.dialog.QDialog;

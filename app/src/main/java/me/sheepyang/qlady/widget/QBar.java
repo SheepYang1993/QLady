@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SizeUtils;
+import com.blankj.utilcode.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +24,7 @@ import me.sheepyang.qlady.R;
  */
 
 public class QBar extends RelativeLayout {
+    private int mRightBackgroundId;
     private float mRightTextSize;
     @BindView(R.id.iv_right)
     ImageView mIvRight;
@@ -52,12 +54,16 @@ public class QBar extends RelativeLayout {
     public QBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+        if (isInEditMode()) {
+            Utils.init(mContext);
+        }
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.QBar, defStyleAttr, 0);
         try {
             mTitle = a.getString(R.styleable.QBar_qb_title);
             mRightText = a.getString(R.styleable.QBar_qb_right_text);
             mRightDrawableId = a.getResourceId(R.styleable.QBar_qb_right_drawable, -1);
-            mRightTextSize = a.getDimension(R.styleable.QBar_qb_right_text_size, SizeUtils.sp2px(17));
+            mRightBackgroundId = a.getResourceId(R.styleable.QBar_qb_right_background, -1);
+            mRightTextSize = SizeUtils.px2sp(a.getDimensionPixelSize(R.styleable.QBar_qb_right_text_size, SizeUtils.sp2px(17)));
         } finally {
             a.recycle();
         }
@@ -75,13 +81,14 @@ public class QBar extends RelativeLayout {
             mTvRight.setText(mRightText);
         }
         mTvRight.setTextSize(mRightTextSize);
-
+        if (mRightBackgroundId != -1) {
+            mLlRight.setBackgroundResource(mRightBackgroundId);
+        }
         if (!TextUtils.isEmpty(mRightText) && mRightDrawableId != -1) {
             mLlRight.setVisibility(VISIBLE);
             mTvRight.setVisibility(VISIBLE);
             mIvRight.setVisibility(VISIBLE);
             mTvRight.setTextColor(getResources().getColor(R.color.black));
-            mLlRight.setBackgroundResource(R.drawable.bg_white_small_shape);
             mIvRight.setImageResource(mRightDrawableId);
         } else if (!TextUtils.isEmpty(mRightText)) {
             mLlRight.setVisibility(VISIBLE);
@@ -98,22 +105,7 @@ public class QBar extends RelativeLayout {
         } else {
             mLlRight.setVisibility(GONE);
         }
-//
-//        if (!isInEditMode()) {
-//            if (mRightDrawableId != -1) {
-//                mIvRight.setVisibility(VISIBLE);
-//                Glide.with(mContext)
-//                        .load(mRightDrawableId)
-//                        .into(mIvRight);
-//            } else {
-//                mIvRight.setVisibility(GONE);
-//            }
-//        }
-//        if (!TextUtils.isEmpty(mRightText) || mRightDrawableId != -1) {
-//            mLlRight.setVisibility(VISIBLE);
-//        } else {
-//            mLlRight.setVisibility(GONE);
-//        }
+
         mIvLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
