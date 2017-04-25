@@ -7,8 +7,11 @@ import android.view.View;
 import butterknife.OnClick;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.BaseActivity;
+import me.sheepyang.qlady.widget.dialog.QDialog;
 
 public class MineActivity extends BaseActivity implements View.OnClickListener {
+
+    private QDialog mHintDialog;
 
     @Override
     protected int setLayoutId() {
@@ -22,11 +25,15 @@ public class MineActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-
+        mHintDialog = new QDialog(mContext);
+        mHintDialog.setTitle("退出当前账号？");
+        mHintDialog.setMessage("退出后将不能享受更多服务哦~");
     }
 
     @Override
-    @OnClick({R.id.iv_avatar, R.id.tv_nick_name, R.id.tv_edit_info, R.id.rl_open_vip, R.id.rl_collection, R.id.tv_clear_memory})
+    @OnClick({R.id.tv_about, R.id.tv_feed_back, R.id.iv_avatar, R.id.tv_nick_name,
+            R.id.tv_edit_info, R.id.rl_open_vip, R.id.rl_collection, R.id.tv_clear_memory,
+            R.id.tv_user_agreement, R.id.tv_logout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_open_vip:
@@ -37,6 +44,18 @@ public class MineActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_clear_memory:
                 showToast("缓存已清除");
+                break;
+            case R.id.tv_user_agreement:
+                startActivity(new Intent(mContext, UserAgreementActivity.class));
+                break;
+            case R.id.tv_feed_back:
+                startActivity(new Intent(mContext, FeedbackActivity.class));
+                break;
+            case R.id.tv_about:
+                startActivity(new Intent(mContext, AboutActivity.class));
+                break;
+            case R.id.tv_logout:
+                mHintDialog.show();
                 break;
             case R.id.iv_avatar:
             case R.id.tv_nick_name:

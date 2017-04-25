@@ -139,6 +139,7 @@
                 android:background="@color/split_line"/>
 
             <TextView
+                android:id="@+id/tv_feed_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -152,6 +153,7 @@
                 android:background="@color/split_line"/>
 
             <TextView
+                android:id="@+id/tv_user_agreement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -165,6 +167,7 @@
                 android:background="@color/split_line"/>
 
             <TextView
+                android:id="@+id/tv_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -185,6 +188,7 @@
         android:background="@color/split_line"/>
 
     <TextView
+        android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

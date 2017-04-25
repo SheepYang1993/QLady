@@ -34,6 +34,14 @@
         </activity>
         <activity android:name=".activity.mine.EditPasswordActivity">
         </activity>
+        <activity android:name=".activity.mine.FeedbackActivity">
+        </activity>
+        <activity android:name=".activity.mine.AboutActivity">
+        </activity>
+        <activity android:name=".activity.mine.UserAgreementActivity">
+        </activity>
+        <activity android:name=".activity.login.LoginActivity">
+        </activity>
     </application>
 
 </manifest>
