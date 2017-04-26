@@ -1,9 +1,9 @@
 package me.sheepyang.qlady.fragment;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
@@ -14,8 +14,8 @@ import me.sheepyang.qlady.R;
 
 public class ImageDetailFragment extends BaseFragment {
     private static final String IMAGE_PATH = "image_path";
-    @BindView(R.id.iv_photo)
-    ImageView mIvPhoto;
+    @BindView(R.id.photo_view)
+    PhotoView mPhotoView;
     private String mPath;
 
     @Override
@@ -31,8 +31,7 @@ public class ImageDetailFragment extends BaseFragment {
     private void initData() {
         Glide.with(mContext)
                 .load(mPath)
-                .centerCrop()
-                .into(mIvPhoto);
+                .into(mPhotoView);
     }
 
     public ImageDetailFragment() {
