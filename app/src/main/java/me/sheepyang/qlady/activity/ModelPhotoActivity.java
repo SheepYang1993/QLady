@@ -24,6 +24,9 @@ import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.widget.QBar;
 import me.sheepyang.qlady.widget.dialog.QDialog;
 
+import static me.sheepyang.qlady.activity.ImageBrowserActivity.IMAGE_LIST;
+import static me.sheepyang.qlady.activity.ImageBrowserActivity.IS_MORE_LOCK;
+
 public class ModelPhotoActivity extends BaseActivity {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -75,8 +78,20 @@ public class ModelPhotoActivity extends BaseActivity {
                 if (mData.get(position).isLock()) {
                     mHintDialog.show();
                 } else {
-                    showToast("跳转至图片浏览器");
-                    startActivity(new Intent(mContext, ImageBrowserActivity.class));
+                    boolean isMoreLock = false;
+                    ArrayList<String> modelPathList = new ArrayList<>();
+                    for (ModelEntity entity :
+                            mData) {
+                        if (entity.isLock()) {
+                            isMoreLock = true;
+                        } else {
+                            modelPathList.add(entity.getImgPath());
+                        }
+                    }
+                    Intent intent = new Intent(mContext, ImageBrowserActivity.class);
+                    intent.putExtra(IS_MORE_LOCK, isMoreLock);
+                    intent.putExtra(IMAGE_LIST, modelPathList);
+                    startActivity(intent);
                 }
             }
         });
