@@ -2,15 +2,16 @@ package me.sheepyang.qlady.adapter;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.entity.SortEntity;
 
@@ -19,20 +20,33 @@ import me.sheepyang.qlady.entity.SortEntity;
  */
 
 public class SortAdapter extends BaseQuickAdapter<SortEntity, BaseViewHolder> {
-    private LinearLayout.LayoutParams mParams;
+    private int mScreenWidth;
 
     public SortAdapter(List<SortEntity> data) {
         super(R.layout.item_sort, data);
-        mParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(ScreenUtils.getScreenWidth() / 2.5));
+        mScreenWidth = ScreenUtils.getScreenWidth();
     }
 
     @Override
     protected void convert(BaseViewHolder helper, SortEntity item) {
-        helper.getView(R.id.iv_photo).setLayoutParams(mParams);
-        Glide.with(mContext)
-                .load("http://img1.mm131.com/pic/2889/m.jpg")
-                .centerCrop()
-                .into((ImageView) helper.getView(R.id.iv_photo));
+        ViewGroup.LayoutParams lp = helper.getView(R.id.iv_photo).getLayoutParams();
+        lp.width = mScreenWidth / 2;
+        lp.height = (int) (lp.width * 0.75);
+        helper.getView(R.id.iv_photo).setLayoutParams(lp);
+
+        helper.setText(R.id.tv_name, item.getName());
+        helper.setText(R.id.tv_photo_num, item.getPhotoNum() + "");
+        if (item.isLock()) {
+            Glide.with(mContext)
+                    .load(item.getImaPath())
+                    .bitmapTransform(new CenterCrop(mContext), new BlurTransformation(mContext, 10, 8))
+                    .into((ImageView) helper.getView(R.id.iv_photo));
+        } else {
+            Glide.with(mContext)
+                    .load(item.getImaPath())
+                    .centerCrop()
+                    .into((ImageView) helper.getView(R.id.iv_photo));
+        }
     }
 
     public void updata(List<SortEntity> data) {

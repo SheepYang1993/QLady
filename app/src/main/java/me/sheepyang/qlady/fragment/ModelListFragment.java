@@ -112,10 +112,12 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
                     @Override
                     public void run() {
                         mData.clear();
-                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-                        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        for (int i = 0; i < 4; i++) {
+                            ModelEntity entity = new ModelEntity();
+                            entity.setImgPath("http://img1.mm131.com/pic/2889/m.jpg");
+                            entity.setAvatarPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492624497119&di=298dc98d6977a37dab24f902d091ddd2&imgtype=0&src=http%3A%2F%2Fk2.jsqq.net%2Fuploads%2Fallimg%2F1702%2F7_170228144936_2.jpg");
+                            mData.add(entity);
+                        }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
                     }
@@ -128,9 +130,13 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
                 mRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
-                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
-                        mData.add(new ModelEntity(true, "http://img1.mm131.com/pic/2889/m.jpg"));
+                        for (int i = 0; i < 3; i++) {
+                            ModelEntity entity = new ModelEntity();
+                            entity.setLock(true);
+                            entity.setImgPath("http://img1.mm131.com/pic/2889/m.jpg");
+                            entity.setAvatarPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492624497119&di=298dc98d6977a37dab24f902d091ddd2&imgtype=0&src=http%3A%2F%2Fk2.jsqq.net%2Fuploads%2Fallimg%2F1702%2F7_170228144936_2.jpg");
+                            mData.add(entity);
+                        }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
                     }
@@ -153,10 +159,12 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
             }, 5000);
         }
         mData.clear();
-        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
-        mData.add(new ModelEntity(false, "http://img1.mm131.com/pic/2889/m.jpg"));
+        for (int i = 0; i < 4; i++) {
+            ModelEntity entity = new ModelEntity();
+            entity.setImgPath("http://img1.mm131.com/pic/2889/m.jpg");
+            entity.setAvatarPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492624497119&di=298dc98d6977a37dab24f902d091ddd2&imgtype=0&src=http%3A%2F%2Fk2.jsqq.net%2Fuploads%2Fallimg%2F1702%2F7_170228144936_2.jpg");
+            mData.add(entity);
+        }
         mAdapter.updata(mData);
     }
 
@@ -175,11 +183,9 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
         mRecyclerView.setAdapter(mAdapter);
 
         if (mIsShowBannar) {
-            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
-            mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            for (int i = 0; i < 5; i++) {
+                mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+            }
 
             View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) mRecyclerView.getParent(), false);
             mBannar = (Banner) header.findViewById(R.id.banner);

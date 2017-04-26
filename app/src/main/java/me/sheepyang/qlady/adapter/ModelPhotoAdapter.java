@@ -6,11 +6,13 @@ import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.entity.ModelEntity;
 
@@ -27,12 +29,21 @@ public class ModelPhotoAdapter extends BaseQuickAdapter<ModelEntity, BaseViewHol
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ModelEntity item) {
+    protected void convert(final BaseViewHolder helper, ModelEntity item) {
         helper.getView(R.id.iv_photo).setLayoutParams(mParams);
-        Glide.with(mContext)
-                .load("http://img1.mm131.com/pic/2889/m.jpg")
-                .centerCrop()
-                .into((ImageView) helper.getView(R.id.iv_photo));
+        if (item.isLock()) {
+            //图片已上锁，模糊图片
+            Glide.with(mContext)
+                    .load(item.getImgPath())
+                    .bitmapTransform(new CenterCrop(mContext), new BlurTransformation(mContext, 10, 8))
+                    .into((ImageView) helper.getView(R.id.iv_photo));
+        } else {
+            //加载图片
+            Glide.with(mContext)
+                    .load(item.getImgPath())
+                    .centerCrop()
+                    .into((ImageView) helper.getView(R.id.iv_photo));
+        }
     }
 
     public void updata(List<ModelEntity> data) {

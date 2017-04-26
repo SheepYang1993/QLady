@@ -23,12 +23,12 @@ import me.sheepyang.qlady.entity.TabEntity;
 import me.sheepyang.qlady.fragment.ModelListFragment;
 import me.sheepyang.qlady.fragment.SortFragment;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class HomePageActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tab_layout)
-    CommonTabLayout tabLayout;
+    CommonTabLayout mTabLayout;
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    ViewPager mViewPager;
     private List<String> mTitleList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected int setLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_home_page;
     }
 
     @Override
@@ -47,10 +47,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initListener() {
-        tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+        mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                viewPager.setCurrentItem(position);
+                mViewPager.setCurrentItem(position);
             }
 
             @Override
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-                tabLayout.setCurrentTab(position);
+                mTabLayout.setCurrentTab(position);
             }
 
             @Override
@@ -87,8 +87,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabEntities.add(new TabEntity("分类", R.drawable.ico_search, R.drawable.ico_search));
         mTabEntities.add(new TabEntity("最热", R.drawable.ico_search, R.drawable.ico_search));
 
-        viewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), mFragmentList, mTitleList));
-        tabLayout.setTabData(mTabEntities);
+        mViewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager(), mFragmentList, mTitleList));
+        mTabLayout.setTabData(mTabEntities);
     }
 
     @Override

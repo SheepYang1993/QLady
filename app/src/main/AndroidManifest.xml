@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.FullScreen"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -41,6 +41,8 @@
         <activity android:name=".activity.mine.UserAgreementActivity">
         </activity>
         <activity android:name=".activity.login.LoginActivity">
+        </activity>
+        <activity android:name=".activity.ImageBrowserActivity">
         </activity>
     </application>
 

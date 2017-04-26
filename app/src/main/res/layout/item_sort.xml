@@ -7,8 +7,7 @@
     <ImageView
         android:id="@+id/iv_photo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"/>
+        android:layout_height="wrap_content"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,15 +15,25 @@
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="童颜巨乳"/>
+            android:text="类型"/>
 
         <TextView
+            android:id="@+id/tv_photo_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_photo_unit"
+            android:text="0"
+            android:textColor="#909090"/>
+
+        <TextView
+            android:id="@+id/tv_photo_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="1324张照片"
+            android:text="张照片"
             android:textColor="#909090"/>
     </RelativeLayout>
 </LinearLayout>

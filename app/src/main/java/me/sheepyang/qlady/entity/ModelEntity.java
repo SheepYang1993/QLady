@@ -6,11 +6,19 @@ package me.sheepyang.qlady.entity;
 
 public class ModelEntity {
     private boolean isLock;
+    private String avatarPath;
     private String imgPath;
 
-    public ModelEntity(boolean isLock, String imgPath) {
-        this.isLock = isLock;
-        this.imgPath = imgPath;
+    public ModelEntity() {
+
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
     public boolean isLock() {

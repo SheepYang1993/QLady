@@ -1,5 +1,6 @@
 package me.sheepyang.qlady.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,8 +19,10 @@ import java.util.List;
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.ModelListActivity;
+import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.adapter.SortAdapter;
 import me.sheepyang.qlady.entity.SortEntity;
+import me.sheepyang.qlady.widget.dialog.QDialog;
 
 /**
  * 分类
@@ -34,6 +37,7 @@ public class SortFragment extends BaseFragment {
     private SortAdapter mAdapter;
     private List<SortEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
+    private QDialog mHintDialog;
 
     public SortFragment() {
 
@@ -68,10 +72,20 @@ public class SortFragment extends BaseFragment {
     }
 
     private void initListener() {
+        mHintDialog.setOnRightClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(mContext, BuyVIPActivity.class));
+            }
+        });
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(mContext, ModelListActivity.class));
+                if (mData.get(position).isLock()) {
+                    mHintDialog.show();
+                } else {
+                    startActivity(new Intent(mContext, ModelListActivity.class));
+                }
             }
         });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
@@ -83,7 +97,11 @@ public class SortFragment extends BaseFragment {
                     public void run() {
                         mData.clear();
                         for (int i = 0; i < 4; i++) {
-                            mData.add(new SortEntity());
+                            SortEntity entity = new SortEntity();
+                            entity.setPhotoNum(1345);
+                            entity.setName("风景");
+                            entity.setImaPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493200839451&di=47d8a6ba814373e5da8f94d994171022&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F12%2F39%2F44%2F23358PICabP.jpg");
+                            mData.add(entity);
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishRefreshing();
@@ -97,8 +115,13 @@ public class SortFragment extends BaseFragment {
                 mRefreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        for (int i = 0; i < 3; i++) {
-                            mData.add(new SortEntity());
+                        for (int i = 0; i < 4; i++) {
+                            SortEntity entity = new SortEntity();
+                            entity.setPhotoNum(9987);
+                            entity.setLock(true);
+                            entity.setName("童颜巨乳");
+                            entity.setImaPath("http://img1.mm131.com/pic/2889/m.jpg");
+                            mData.add(entity);
                         }
                         mAdapter.updata(mData);
                         mRefreshLayout.finishLoadmore();
@@ -109,13 +132,19 @@ public class SortFragment extends BaseFragment {
     }
 
     private void initData() {
+        mData.clear();
         for (int i = 0; i < 4; i++) {
-            mData.add(new SortEntity());
+            SortEntity entity = new SortEntity();
+            entity.setPhotoNum(1345);
+            entity.setName("风景");
+            entity.setImaPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493200839451&di=47d8a6ba814373e5da8f94d994171022&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F12%2F39%2F44%2F23358PICabP.jpg");
+            mData.add(entity);
         }
         mAdapter.updata(mData);
     }
 
     private void initView() {
+
         mHeadView = new SinaRefreshView(mContext);
         mHeadView.setArrowResource(R.drawable.ico_pink_arrow);
         mRefreshLayout.setHeaderView(mHeadView);
@@ -128,5 +157,9 @@ public class SortFragment extends BaseFragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
         mRecyclerView.setAdapter(mAdapter);
+
+        mHintDialog = new QDialog(mContext);
+        mHintDialog.setTitle("开通会员");
+        mHintDialog.setMessage("现在开通会员，即可解锁所有照片，并可获取模特联系方式哦~");
     }
 }
