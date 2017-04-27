@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="me.sheepyang.qlady.activity.ModelPhotoActivity">
+              tools:context="me.sheepyang.qlady.activity.detail.ModelPhotoActivity">
 
     <me.sheepyang.qlady.widget.QBar
         android:id="@+id/q_bar"

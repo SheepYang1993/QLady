@@ -52,7 +52,7 @@ public class QDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.layout_dialog);
+        setContentView(R.layout.dialog_message);
         setCanceledOnTouchOutside(true);
         ButterKnife.bind(this);
         initView();
@@ -62,7 +62,6 @@ public class QDialog extends Dialog implements View.OnClickListener {
         mTvTitle.setText(mTitle);
         mTvMessage.setText(mMessage);
     }
-
 
     @Override
     public void show() {

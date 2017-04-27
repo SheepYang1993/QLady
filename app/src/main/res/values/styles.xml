@@ -32,4 +32,9 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <style name="AnimBottom">
+        <item name="android:windowEnterAnimation">@anim/up_view</item>
+        <item name="android:windowExitAnimation">@anim/dowm_view</item>
+    </style>
 </resources>

@@ -24,8 +24,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
-import me.sheepyang.qlady.activity.ModelDetailActivity;
-import me.sheepyang.qlady.activity.ModelPhotoActivity;
+import me.sheepyang.qlady.activity.detail.ModelDetailActivity;
+import me.sheepyang.qlady.activity.detail.ModelPhotoActivity;
 import me.sheepyang.qlady.adapter.ModelDetailAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.loader.GlideImageLoader;

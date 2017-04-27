@@ -42,10 +42,13 @@
                 android:text="头像"/>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/iv_arrow_right1"
                 android:background="@drawable/pink_radius_line"
                 android:src="@drawable/ico_user_avatar"/>

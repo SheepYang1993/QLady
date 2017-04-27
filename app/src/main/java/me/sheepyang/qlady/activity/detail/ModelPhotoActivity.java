@@ -1,4 +1,4 @@
-package me.sheepyang.qlady.activity;
+package me.sheepyang.qlady.activity.detail;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.BaseActivity;
+import me.sheepyang.qlady.activity.ImageBrowserActivity;
 import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.adapter.ModelPhotoAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
