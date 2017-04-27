@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme.NoActionBar.FullScreen"
         tools:replace="android:icon, android:theme">
         <activity
-            android:name=".activity.HomePageActivity"
+            android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.HomePageActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.detail.ModelPhotoActivity"
             android:screenOrientation="portrait"/>
@@ -65,9 +68,16 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.login.LoginActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.ImageBrowserActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.login.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.login.ForgotPasswordActivity"
             android:screenOrientation="portrait"/>
     </application>
 

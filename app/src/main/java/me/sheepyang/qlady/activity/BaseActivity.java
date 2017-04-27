@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
+import me.sheepyang.qlady.QApp;
 import me.sheepyang.qlady.util.AppManager;
 
 /**
@@ -18,7 +19,8 @@ import me.sheepyang.qlady.util.AppManager;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected Context mContext;
+    public QApp mApp;
+    public Context mContext;
 
     protected abstract
     @LayoutRes
@@ -28,10 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutId());
+        mApp = (QApp) getApplication();
+        mContext = this;
         ButterKnife.bind(this);
         // 添加Activity到堆栈
         AppManager.getAppManager().addActivity(this);
-        mContext = this;
     }
 
     @Override

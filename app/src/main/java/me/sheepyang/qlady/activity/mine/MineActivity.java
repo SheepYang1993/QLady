@@ -1,5 +1,6 @@
 package me.sheepyang.qlady.activity.mine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,17 @@ public class MineActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        initListener();
+    }
+
+    private void initListener() {
+        mHintDialog.setOnRightClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mApp.logout();
+                onBackPressed();
+            }
+        });
     }
 
     private void initView() {

@@ -66,7 +66,11 @@ public class ModelDetailActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_get_contact:
-                mHintialog.show();
+                if (mApp.isLogin()) {
+                    mHintialog.show();
+                } else {
+                    mApp.toLogin(mContext);
+                }
                 break;
             default:
                 break;

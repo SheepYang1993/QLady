@@ -1,5 +1,6 @@
 package me.sheepyang.qlady.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.sheepyang.qlady.QApp;
 
 /**
  * Created by Administrator on 2017/4/19.
@@ -19,11 +21,13 @@ public abstract class BaseFragment extends Fragment {
     public Unbinder unbinder;
     public View mRootView;
     public Context mContext;
+    public QApp mApp;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+        mApp = (QApp) ((Activity) context).getApplication();
     }
 
     @Override

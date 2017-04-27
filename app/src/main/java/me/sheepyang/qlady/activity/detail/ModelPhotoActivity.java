@@ -77,23 +77,27 @@ public class ModelPhotoActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (mData.get(position).isLock()) {
-                    mHintDialog.show();
-                } else {
-                    boolean isMoreLock = false;
-                    ArrayList<String> modelPathList = new ArrayList<>();
-                    for (ModelEntity entity :
-                            mData) {
-                        if (entity.isLock()) {
-                            isMoreLock = true;
-                        } else {
-                            modelPathList.add(entity.getImgPath());
+                if (mApp.isLogin()) {//已登录
+                    if (mData.get(position).isLock()) {//图片已上锁
+                        mHintDialog.show();
+                    } else {
+                        boolean isMoreLock = false;
+                        ArrayList<String> modelPathList = new ArrayList<>();
+                        for (ModelEntity entity :
+                                mData) {
+                            if (entity.isLock()) {
+                                isMoreLock = true;
+                            } else {
+                                modelPathList.add(entity.getImgPath());
+                            }
                         }
+                        Intent intent = new Intent(mContext, ImageBrowserActivity.class);
+                        intent.putExtra(IS_MORE_LOCK, isMoreLock);
+                        intent.putExtra(IMAGE_LIST, modelPathList);
+                        startActivity(intent);
                     }
-                    Intent intent = new Intent(mContext, ImageBrowserActivity.class);
-                    intent.putExtra(IS_MORE_LOCK, isMoreLock);
-                    intent.putExtra(IMAGE_LIST, modelPathList);
-                    startActivity(intent);
+                } else {
+                    mApp.toLogin(mContext);
                 }
             }
         });
@@ -106,7 +110,11 @@ public class ModelPhotoActivity extends BaseActivity {
         mQBar.setOnRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintDialog.show();
+                if (mApp.isLogin()) {
+                    mHintDialog.show();
+                } else {
+                    mApp.toLogin(mContext);
+                }
             }
         });
         mRefreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {

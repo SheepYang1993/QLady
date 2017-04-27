@@ -84,6 +84,18 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
     }
 
     private void initListener() {
+        if (mIsShowBannar) {
+            mBannar.setOnBannerListener(new OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    if (mApp.isLogin()) {
+                        LogUtils.i("点击了banner:" + position);
+                    } else {
+                        mApp.toLogin(mContext);
+                    }
+                }
+            });
+        }
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

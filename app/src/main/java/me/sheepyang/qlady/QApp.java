@@ -1,7 +1,9 @@
 package me.sheepyang.qlady;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.support.multidex.MultiDex;
 
 import com.blankj.utilcode.util.Utils;
@@ -10,6 +12,7 @@ import com.lzy.okgo.cookie.store.PersistentCookieStore;
 
 import java.util.logging.Level;
 
+import me.sheepyang.qlady.activity.login.LoginActivity;
 import me.sheepyang.qlady.util.AppManager;
 
 
@@ -18,6 +21,8 @@ import me.sheepyang.qlady.util.AppManager;
  */
 
 public class QApp extends Application {
+    public static final int REQUEST_LOGIN = 1;
+    private boolean mLogin;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -42,7 +47,25 @@ public class QApp extends Application {
                 .setCookieStore(new PersistentCookieStore());
     }
 
+    public boolean isLogin() {
+        return mLogin;
+    }
+
+    public void setLogin(boolean login) {
+        this.mLogin = login;
+    }
+
     public static void exitApp(Context context) {
         AppManager.getAppManager().AppExit(context);
+    }
+
+    public void toLogin(Context context) {
+        if (context instanceof Activity) {
+            ((Activity) context).startActivityForResult(new Intent(context, LoginActivity.class), REQUEST_LOGIN);
+        }
+    }
+
+    public void logout() {
+        setLogin(false);
     }
 }

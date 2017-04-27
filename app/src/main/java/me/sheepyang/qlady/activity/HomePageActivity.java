@@ -107,7 +107,11 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_mine:
-                startActivity(new Intent(mContext, MineActivity.class));
+                if (mApp.isLogin()) {
+                    startActivity(new Intent(mContext, MineActivity.class));
+                } else {
+                    mApp.toLogin(mContext);
+                }
                 break;
             case R.id.iv_search:
                 startActivity(new Intent(mContext, SearchActivity.class));
