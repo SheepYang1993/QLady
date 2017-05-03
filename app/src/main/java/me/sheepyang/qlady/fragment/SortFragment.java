@@ -18,7 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
-import me.sheepyang.qlady.activity.ModelListActivity;
+import me.sheepyang.qlady.activity.other.ModelListActivity;
 import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.adapter.SortAdapter;
 import me.sheepyang.qlady.entity.SortEntity;

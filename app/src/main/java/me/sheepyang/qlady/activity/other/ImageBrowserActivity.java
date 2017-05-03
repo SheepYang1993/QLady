@@ -1,4 +1,4 @@
-package me.sheepyang.qlady.activity;
+package me.sheepyang.qlady.activity.other;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
+import me.sheepyang.qlady.activity.BaseActivity;
 import me.sheepyang.qlady.adapter.ImageBrowserAdapter;
 import me.sheepyang.qlady.fragment.ImageDetailFragment;
 

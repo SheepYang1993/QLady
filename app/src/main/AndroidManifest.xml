@@ -31,13 +31,13 @@
             android:name=".activity.detail.ModelPhotoActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.ModelListActivity"
+            android:name=".activity.other.ModelListActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.mine.MineActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SearchActivity"
+            android:name=".activity.other.SearchActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.detail.ModelDetailActivity"
@@ -71,7 +71,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.ImageBrowserActivity"
+            android:name=".activity.other.ImageBrowserActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.login.RegisterActivity"

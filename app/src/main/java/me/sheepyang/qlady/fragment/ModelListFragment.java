@@ -16,6 +16,8 @@ import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -29,6 +31,8 @@ import me.sheepyang.qlady.activity.detail.ModelPhotoActivity;
 import me.sheepyang.qlady.adapter.ModelDetailAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.loader.GlideImageLoader;
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * 最新
@@ -196,7 +200,9 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
 
         if (mIsShowBannar) {
             for (int i = 0; i < 5; i++) {
-                mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+//                mBannarList.add("http://img1.mm131.com/pic/2889/m.jpg");
+                mBannarList.add("http://172.21.20.2:8080/GodGoddess/tBaseUser/selectArray.action");
+
             }
 
             View header = LayoutInflater.from(mContext).inflate(R.layout.header_bannar, (ViewGroup) mRecyclerView.getParent(), false);
@@ -253,5 +259,13 @@ public class ModelListFragment extends BaseFragment implements OnBannerListener 
     @Override
     public void OnBannerClick(int position) {
         LogUtils.i("点击了bannar的第" + position + "个Item");
+        OkGo.post("")
+                .params("", "")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+
+                    }
+                });
     }
 }

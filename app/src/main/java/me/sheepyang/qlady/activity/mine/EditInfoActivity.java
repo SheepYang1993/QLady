@@ -18,14 +18,14 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.BaseActivity;
-import me.sheepyang.qlady.activity.ImageBrowserActivity;
+import me.sheepyang.qlady.activity.other.ImageBrowserActivity;
 import me.sheepyang.qlady.loader.GlideImageLoader;
 import me.sheepyang.qlady.util.glide.GlideCircleTransform;
 import me.sheepyang.qlady.widget.QBar;
 import me.sheepyang.qlady.widget.dialog.SelectPhotoDialog;
 
 import static com.lzy.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW;
-import static me.sheepyang.qlady.activity.ImageBrowserActivity.IMAGE_LIST;
+import static me.sheepyang.qlady.activity.other.ImageBrowserActivity.IMAGE_LIST;
 
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
 

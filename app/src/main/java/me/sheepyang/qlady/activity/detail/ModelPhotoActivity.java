@@ -19,15 +19,15 @@ import java.util.List;
 import butterknife.BindView;
 import me.sheepyang.qlady.R;
 import me.sheepyang.qlady.activity.BaseActivity;
-import me.sheepyang.qlady.activity.ImageBrowserActivity;
+import me.sheepyang.qlady.activity.other.ImageBrowserActivity;
 import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.adapter.ModelPhotoAdapter;
 import me.sheepyang.qlady.entity.ModelEntity;
 import me.sheepyang.qlady.widget.QBar;
 import me.sheepyang.qlady.widget.dialog.QDialog;
 
-import static me.sheepyang.qlady.activity.ImageBrowserActivity.IMAGE_LIST;
-import static me.sheepyang.qlady.activity.ImageBrowserActivity.IS_MORE_LOCK;
+import static me.sheepyang.qlady.activity.other.ImageBrowserActivity.IMAGE_LIST;
+import static me.sheepyang.qlady.activity.other.ImageBrowserActivity.IS_MORE_LOCK;
 
 public class ModelPhotoActivity extends BaseActivity {
     @BindView(R.id.recycler_view)
