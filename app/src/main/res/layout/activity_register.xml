@@ -22,6 +22,7 @@
             android:background="@drawable/bg_white_shape">
 
             <me.sheepyang.qlady.widget.ClearEditText
+                android:id="@+id/edt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -38,6 +39,7 @@
             android:orientation="horizontal">
 
             <me.sheepyang.qlady.widget.ClearEditText
+                android:id="@+id/edt_get_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -64,6 +66,7 @@
             android:background="@drawable/bg_white_shape">
 
             <me.sheepyang.qlady.widget.ClearEditText
+                android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

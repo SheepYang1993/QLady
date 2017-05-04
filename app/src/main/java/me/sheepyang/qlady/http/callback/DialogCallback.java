@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.lzy.okgo.request.BaseRequest;
 
+import me.sheepyang.qlady.util.DialogUtil;
+import me.sheepyang.qlady.util.ExceptionUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -30,7 +32,7 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     public DialogCallback(Context context, boolean isCancelable) {
         super();
         mContext = context;
-//        dialog = DialogUtil.createLoadingDialog(context, isCancelable);
+        dialog = DialogUtil.createLoadingDialog(context, isCancelable);
     }
 
     @Override
@@ -54,6 +56,6 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
     @Override
     public void onError(Call call, Response response, Exception e) {
         super.onError(call, response, e);
-//        ExceptionUtil.handleException(mContext, response, e);
+        ExceptionUtil.handleException(mContext, response, e);
     }
 }
