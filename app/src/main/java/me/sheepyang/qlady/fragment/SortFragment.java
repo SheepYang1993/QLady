@@ -7,11 +7,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.blankj.utilcode.util.EncryptUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,11 @@ import me.sheepyang.qlady.activity.other.ModelListActivity;
 import me.sheepyang.qlady.activity.mine.BuyVIPActivity;
 import me.sheepyang.qlady.adapter.SortAdapter;
 import me.sheepyang.qlady.entity.SortEntity;
+import me.sheepyang.qlady.http.Api;
+import me.sheepyang.qlady.util.ExceptionUtil;
 import me.sheepyang.qlady.widget.dialog.QDialog;
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * 分类
@@ -38,6 +45,7 @@ public class SortFragment extends BaseFragment {
     private List<SortEntity> mData = new ArrayList<>();
     private SinaRefreshView mHeadView;
     private QDialog mHintDialog;
+    private int mCurrentPage = 1;
 
     public SortFragment() {
 
@@ -92,43 +100,58 @@ public class SortFragment extends BaseFragment {
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
                 super.onRefresh(refreshLayout);
-                mRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mData.clear();
-                        for (int i = 0; i < 4; i++) {
-                            SortEntity entity = new SortEntity();
-                            entity.setPhotoNum(1345);
-                            entity.setName("风景");
-                            entity.setImaPath("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493200839451&di=47d8a6ba814373e5da8f94d994171022&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F12%2F39%2F44%2F23358PICabP.jpg");
-                            mData.add(entity);
-                        }
-                        mAdapter.updata(mData);
-                        mRefreshLayout.finishRefreshing();
-                    }
-                }, 1000);
+                getTypeData(1);
             }
 
             @Override
             public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
                 super.onLoadMore(refreshLayout);
-                mRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < 4; i++) {
-                            SortEntity entity = new SortEntity();
-                            entity.setPhotoNum(9987);
-                            entity.setLock(true);
-                            entity.setName("童颜巨乳");
-                            entity.setImaPath("http://img1.mm131.com/pic/2889/m.jpg");
-                            mData.add(entity);
-                        }
-                        mAdapter.updata(mData);
-                        mRefreshLayout.finishLoadmore();
-                    }
-                }, 1000);
+                getTypeData(2);
+//                mRefreshLayout.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        for (int i = 0; i < 4; i++) {
+//                            SortEntity entity = new SortEntity();
+//                            entity.setPhotoNum(9987);
+//                            entity.setLock(true);
+//                            entity.setName("童颜巨乳");
+//                            entity.setImaPath("http://img1.mm131.com/pic/2889/m.jpg");
+//                            mData.add(entity);
+//                        }
+//                        mAdapter.updata(mData);
+//                        mRefreshLayout.finishLoadmore();
+//                    }
+//                }, 1000);
             }
         });
+    }
+
+    private void getTypeData(int type) {
+        switch (type) {
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+        OkGo.post(Api.GET_TYPE)
+                .tag(this)
+                .params("page", mCurrentPage)
+                .params("rows", 5)
+                .execute(new StringCallback() {
+
+                    @Override
+                    public void onSuccess(String baseResponse, Call call, Response response) {
+
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        ExceptionUtil.handleException(mContext, response, e);
+                    }
+                });
     }
 
     private void initData() {

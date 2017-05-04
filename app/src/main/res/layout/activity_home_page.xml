@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="me.sheepyang.qlady.activity.HomePageActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="me.sheepyang.qlady.activity.HomePageActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@drawable/ico_search" />
+            android:src="@drawable/ico_search"/>
 
         <com.flyco.tablayout.CommonTabLayout
             android:id="@+id/tab_layout"
@@ -29,7 +29,7 @@
             app:tl_indicator_corner_radius="1.5dp"
             app:tl_indicator_height="3dp"
             app:tl_indicator_width="10dp"
-            app:tl_textsize="17sp" />
+            app:tl_textsize="17sp"/>
 
         <ImageView
             android:id="@+id/iv_mine"
@@ -38,11 +38,11 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:padding="10dp"
-            android:src="@drawable/ico_mine" />
+            android:src="@drawable/ico_mine"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </LinearLayout>
